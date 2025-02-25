@@ -35,9 +35,30 @@ st.markdown("""
         margin: 0 auto;
     }
     .stApp {
-        background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+        background: linear-gradient(135deg, #f0f4fd 0%, #e6eefa 100%);
         background-attachment: fixed;
         min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Custom Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes shimmer {
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
     }
     
     /* Glassmorphism Effects */
@@ -54,7 +75,7 @@ st.markdown("""
         background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 2px dashed rgba(67, 97, 238, 0.3);
+        border: 2px dashed rgba(79, 70, 229, 0.3);
         border-radius: 24px;
         padding: 3rem;
         text-align: center;
@@ -63,12 +84,13 @@ st.markdown("""
         cursor: pointer;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 8px 32px rgba(67, 97, 238, 0.1);
+        box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1);
+        animation: fadeIn 0.8s ease-out forwards;
     }
     .upload-area:hover {
         transform: translateY(-5px);
-        border-color: #4361ee;
-        box-shadow: 0 12px 40px rgba(67, 97, 238, 0.15);
+        border-color: #4f46e5;
+        box-shadow: 0 12px 40px rgba(79, 70, 229, 0.15);
     }
     .upload-area::before {
         content: '';
@@ -99,14 +121,16 @@ st.markdown("""
         margin: 28px 0;
         box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid rgba(67, 97, 238, 0.1);
+        border: 1px solid rgba(79, 70, 229, 0.1);
         position: relative;
         overflow: hidden;
+        animation: fadeIn 0.6s ease-out forwards;
+        animation-delay: calc(var(--animation-order) * 0.1s);
     }
     .job-card:hover {
         transform: translateY(-5px) scale(1.01);
-        box-shadow: 0 15px 45px rgba(67, 97, 238, 0.15);
-        border-color: rgba(67, 97, 238, 0.2);
+        box-shadow: 0 15px 45px rgba(79, 70, 229, 0.15);
+        border-color: rgba(79, 70, 229, 0.2);
     }
     .job-card::after {
         content: '';
@@ -115,7 +139,7 @@ st.markdown("""
         right: 0;
         width: 6px;
         height: 100%;
-        background: linear-gradient(135deg, #4361ee, #4895ef);
+        background: linear-gradient(135deg, #4f46e5, #818cf8);
         border-radius: 0 24px 24px 0;
         opacity: 0;
         transition: 0.4s;
@@ -152,21 +176,21 @@ st.markdown("""
         gap: 8px !important;
         font-size: 15px !important;
         letter-spacing: 0.5px !important;
-        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2) !important;
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2) !important;
         transition: all 0.3s ease !important;
-        border: 1px solid rgba(67, 97, 238, 0.2) !important;
+        border: 1px solid rgba(79, 70, 229, 0.2) !important;
     }
     .match-score:hover {
-        background: linear-gradient(135deg, #4361ee 0%, #4895ef 100%);
-        color: #1e293b;
+        background: linear-gradient(135deg, #4f46e5, #818cf8) !important;
+        color: #ffffff !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+        box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
     }
     .match-score span {
-        color: #4361ee;
+        color: #4f46e5 !important;
     }
     .match-score:hover span {
-        color: #1e293b;
+        color: #ffffff !important;
     }
     
     /* Location */
@@ -183,13 +207,13 @@ st.markdown("""
         color: #475569 !important;
     }
     .location-icon {
-        color: #4361ee !important;
+        color: #4f46e5 !important;
     }
     
     /* Apply Button */
     .apply-button {
         background: #ffffff !important;
-        color: #4361ee !important;
+        color: #4f46e5 !important;
         padding: 14px 32px !important;
         border-radius: 30px !important;
         text-decoration: none !important;
@@ -197,16 +221,38 @@ st.markdown("""
         text-transform: uppercase !important;
         letter-spacing: 1px !important;
         font-size: 15px !important;
-        border: 1px solid rgba(67, 97, 238, 0.2) !important;
-        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.1) !important;
+        border: 1px solid rgba(79, 70, 229, 0.2) !important;
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1) !important;
+        transition: all 0.3s ease !important;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    .apply-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(45deg, #4f46e5, #818cf8);
+        transition: all 0.4s ease;
+        z-index: -1;
+        border-radius: 30px;
     }
     .apply-button:hover {
-        background: rgba(67, 97, 238, 0.1) !important;
-        color: #4361ee !important;
-        border-color: rgba(67, 97, 238, 0.3) !important;
+        color: #ffffff !important;
+        border-color: transparent !important;
+    }
+    .apply-button:hover::before {
+        width: 100%;
     }
     .apply-button span {
-        color: #4361ee !important;
+        color: #4f46e5 !important;
+        transition: all 0.3s ease;
+    }
+    .apply-button:hover span {
+        color: #ffffff !important;
     }
     
     /* Messages */
@@ -220,6 +266,7 @@ st.markdown("""
         font-weight: 500;
         border: 1px solid rgba(5, 150, 105, 0.2);
         box-shadow: 0 8px 32px rgba(5, 150, 105, 0.1);
+        animation: fadeIn 0.6s ease-out forwards;
     }
     .error-message {
         color: #dc2626;
@@ -231,6 +278,7 @@ st.markdown("""
         font-weight: 500;
         border: 1px solid rgba(220, 38, 38, 0.2);
         box-shadow: 0 8px 32px rgba(220, 38, 38, 0.1);
+        animation: fadeIn 0.6s ease-out forwards;
     }
     
     /* Skills Display */
@@ -242,7 +290,8 @@ st.markdown("""
         padding: 32px;
         margin: 28px 0;
         box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
-        border: 1px solid rgba(67, 97, 238, 0.1);
+        border: 1px solid rgba(79, 70, 229, 0.1);
+        animation: fadeIn 0.6s ease-out forwards;
     }
     .skills-container h3 {
         color: #1e293b;
@@ -254,7 +303,7 @@ st.markdown("""
         gap: 10px;
     }
     .skills-container h3 span {
-        color: #4361ee;
+        color: #4f46e5;
     }
     .skills-wrapper {
         display: flex;
@@ -266,25 +315,25 @@ st.markdown("""
         display: inline-flex;
         align-items: center;
         background: #ffffff;
-        color: #4361ee;
+        color: #4f46e5;
         padding: 8px 16px;
         border-radius: 12px;
         font-size: 14px;
         font-weight: 500;
         transition: all 0.3s ease;
-        border: 1px solid rgba(67, 97, 238, 0.2);
+        border: 1px solid rgba(79, 70, 229, 0.2);
     }
     .skill-tag:hover {
         transform: translateY(-2px);
-        background: linear-gradient(135deg, #4361ee 0%, #4895ef 100%);
-        color: #1e293b;
+        background: linear-gradient(135deg, #4f46e5, #818cf8);
+        color: #ffffff;
         border-color: transparent;
-        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
     }
     
     /* Header and Text Styles */
     h1.gradient-text {
-        background: linear-gradient(45deg, #4361ee, #4895ef);
+        background: linear-gradient(45deg, #4f46e5, #818cf8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 4rem;
@@ -292,7 +341,8 @@ st.markdown("""
         margin-bottom: 1.5rem;
         line-height: 1.2;
         letter-spacing: -1px;
-        text-shadow: 0 2px 10px rgba(67, 97, 238, 0.1);
+        text-shadow: 0 2px 10px rgba(79, 70, 229, 0.1);
+        animation: fadeIn 0.8s ease-out forwards;
     }
     .subtitle {
         font-size: 1.4rem;
@@ -301,6 +351,8 @@ st.markdown("""
         margin: 0 auto;
         line-height: 1.6;
         font-weight: 400;
+        animation: fadeIn 0.8s ease-out forwards;
+        animation-delay: 0.2s;
     }
     
     /* Footer */
@@ -310,8 +362,10 @@ st.markdown("""
         padding: 4rem 0;
         margin-top: 4rem;
         font-size: 1.1rem;
-        background: #ffffff;
-        border-top: 1px solid rgba(67, 97, 238, 0.1);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(79, 70, 229, 0.1);
     }
     .footer span {
         color: #ef4444;
@@ -320,7 +374,7 @@ st.markdown("""
     
     /* Upload Area */
     .upload-area h3 {
-        color: #4361ee;
+        color: #4f46e5;
         margin-bottom: 1.2rem;
         font-size: 1.8rem;
         font-weight: 700;
@@ -329,6 +383,43 @@ st.markdown("""
         color: #475569;
         font-size: 1.1rem;
     }
+    
+    /* Loading Animation */
+    .loading-animation {
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(to right, #4f46e5, #818cf8, #4f46e5);
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite linear;
+        border-radius: 2px;
+        margin: 1rem 0;
+    }
+    
+    /* Streamlit Component Overrides */
+    div[data-testid="stFileUploader"] {
+        width: 100%;
+    }
+    div[data-testid="stFileUploader"] > div {
+        width: 100%;
+    }
+    div[data-testid="stFileUploader"] > div > button {
+        background-color: #4f46e5 !important;
+        color: white !important;
+        border-radius: 30px !important;
+        padding: 0.5rem 1.5rem !important;
+        font-weight: 600 !important;
+        border: none !important;
+        transition: all 0.3s ease !important;
+    }
+    div[data-testid="stFileUploader"] > div > button:hover {
+        background-color: #4338ca !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+    }
+    
+    /* Hide default Streamlit elements */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
 
@@ -336,8 +427,27 @@ st.markdown("""
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
-# Load spaCy model
-nlp = spacy.load('en_core_web_sm')
+# Load spaCy model with error handling
+try:
+    nlp = spacy.load('en_core_web_sm')
+    print("Successfully loaded spaCy model: en_core_web_sm")
+except IOError:
+    # If model not found, try to download it
+    print("Model not found. Attempting to download...")
+    try:
+        from spacy.cli import download
+        download('en_core_web_sm')
+        nlp = spacy.load('en_core_web_sm')
+        print("Successfully downloaded and loaded spaCy model: en_core_web_sm")
+    except Exception as e:
+        print(f"Error downloading spaCy model: {str(e)}")
+        # Fallback to a simple model if download fails
+        nlp = spacy.blank('en')
+        print("Using blank English model as fallback")
+except Exception as e:
+    print(f"Unexpected error loading spaCy model: {str(e)}")
+    nlp = spacy.blank('en')
+    print("Using blank English model as fallback")
 
 # Initialize matcher
 matcher = Matcher(nlp.vocab)
@@ -434,7 +544,7 @@ def ngrams(string, n=3):
     ngrams = zip(*[string[i:] for i in range(n)])
     return [''.join(ngram) for ngram in ngrams]
 
-def create_job_card(row, matching_skills):
+def create_job_card(row, matching_skills, index):
     """Helper function to create a job card with proper HTML structure"""
     # Format match score and escape special characters
     match_score = max(min(row['match'] * 100, 100), 0)  # Ensure score is between 0-100
@@ -444,22 +554,22 @@ def create_job_card(row, matching_skills):
     
     # Create simplified job card with modern design and proper HTML structure
     card = f"""
-    <div class="job-card">
+    <div class="job-card" style="--animation-order: {index};">
         <div class="job-header">
             <h3 class="job-title" style="color: #1e293b !important;">{job_title}</h3>
             <div class="match-score" style="color: #1e293b !important; background: #ffffff !important;">
-                <span style="color: #4361ee !important;">🎯</span> {match_score:.1f}%
+                <span style="color: #4f46e5 !important;">🎯</span> {match_score:.1f}%
             </div>
         </div>
         
         <div class="job-location" style="color: #475569 !important;">
-            <span class="location-icon" style="color: #4361ee !important;">📍</span>
+            <span class="location-icon" style="color: #4f46e5 !important;">📍</span>
             <span style="color: #475569 !important;">{location}</span>
         </div>
         
         <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
-            <a href="{apply_link}" target="_blank" rel="noopener noreferrer" class="apply-button" style="color: #4361ee !important; background: #ffffff !important;">
-                Apply Now <span style="color: #4361ee !important;">🚀</span>
+            <a href="{apply_link}" target="_blank" rel="noopener noreferrer" class="apply-button" style="color: #4f46e5 !important; background: #ffffff !important;">
+                Apply Now <span style="color: #4f46e5 !important;">🚀</span>
             </a>
         </div>
     </div>
@@ -566,6 +676,15 @@ def main():
     # Initialize skills matcher at startup
     initialize_skills_matcher()
     
+    # Hide default Streamlit elements
+    hide_st_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        </style>
+    """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
+    
     # Header with modern design
     st.markdown("""
         <div style="text-align: center; padding: 5rem 0 4rem;">
@@ -583,10 +702,10 @@ def main():
     with col2:
         st.markdown("""
             <div class="upload-area">
-                <h3 style="color: #4361ee; margin-bottom: 1.2rem; font-size: 1.8rem; font-weight: 700;">
+                <h3 style="color: #4f46e5; margin-bottom: 1.2rem; font-size: 1.8rem; font-weight: 700;">
                     📤 Upload Your Resume
                 </h3>
-                <p style="color: #64748b; font-size: 1.1rem;">
+                <p style="color: #475569; font-size: 1.1rem;">
                     Drag and drop your PDF resume here to find your perfect match
                 </p>
             </div>
@@ -595,6 +714,9 @@ def main():
         uploaded_file = st.file_uploader("Upload Resume", type=['pdf'], key="resume_uploader", label_visibility="collapsed")
         
         if uploaded_file:
+            # Show loading animation
+            st.markdown('<div class="loading-animation"></div>', unsafe_allow_html=True)
+            
             with st.spinner("🔍 Analyzing your resume..."):
                 try:
                     # Load and process data
@@ -618,11 +740,11 @@ def main():
                         </h2>
                     """, unsafe_allow_html=True)
                     
-                    # Display each job card
+                    # Display each job card with animation delay
                     for idx, row in recommendations.iterrows():
                         job_skills = extract_skills(row['job_description'])
                         matching_skills = set(skills).intersection(set(job_skills))
-                        st.markdown(create_job_card(row, matching_skills), unsafe_allow_html=True)
+                        st.markdown(create_job_card(row, matching_skills, idx), unsafe_allow_html=True)
                         
                 except Exception as e:
                     st.markdown(f"""
