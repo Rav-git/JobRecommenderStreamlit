@@ -427,27 +427,8 @@ st.markdown("""
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
-# Load spaCy model with error handling
-try:
-    nlp = spacy.load('en_core_web_sm')
-    print("Successfully loaded spaCy model: en_core_web_sm")
-except IOError:
-    # If model not found, try to download it
-    print("Model not found. Attempting to download...")
-    try:
-        from spacy.cli import download
-        download('en_core_web_sm')
-        nlp = spacy.load('en_core_web_sm')
-        print("Successfully downloaded and loaded spaCy model: en_core_web_sm")
-    except Exception as e:
-        print(f"Error downloading spaCy model: {str(e)}")
-        # Fallback to a simple model if download fails
-        nlp = spacy.blank('en')
-        print("Using blank English model as fallback")
-except Exception as e:
-    print(f"Unexpected error loading spaCy model: {str(e)}")
-    nlp = spacy.blank('en')
-    print("Using blank English model as fallback")
+# Load spaCy model
+nlp = spacy.load('en_core_web_sm')
 
 # Initialize matcher
 matcher = Matcher(nlp.vocab)
@@ -691,7 +672,7 @@ def main():
             <h1 class="gradient-text">
                 🎯 Smart Job Recommendation System
             </h1>
-            <p class="subtitle">
+            <p style="text-align: center; color: #475569; font-size: 1.4rem; max-width: 800px; margin: 1.5rem auto; line-height: 1.6; font-weight: 400;">
                 Upload your resume and let our AI match you with the perfect job opportunities
             </p>
         </div>
