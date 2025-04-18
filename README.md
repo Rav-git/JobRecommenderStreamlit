@@ -57,7 +57,3 @@ streamlit run app.py
 - PyPDF2
 - pandas
 - NumPy
-
-## Contributing 🤝
-
-Contributions are welcome! Please feel free to submit a Pull Request.
