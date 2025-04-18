@@ -60,5 +60,3 @@ streamlit run app.py
 <<<<<<< HEAD
 =======
 
-
->>>>>>> 896496a (Updated app.py and README, removed LICENSE)
