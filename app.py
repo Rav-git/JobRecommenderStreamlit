@@ -333,15 +333,13 @@ st.markdown("""
     
     /* Header and Text Styles */
     h1.gradient-text {
-        background: linear-gradient(45deg, #4f46e5, #818cf8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 4rem;
+        color: #4f46e5;
+        font-size: 4.5rem;
         font-weight: 800;
         margin-bottom: 1.5rem;
         line-height: 1.2;
         letter-spacing: -1px;
-        text-shadow: 0 2px 10px rgba(79, 70, 229, 0.1);
+        text-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
         animation: fadeIn 0.8s ease-out forwards;
     }
     .subtitle {
@@ -668,8 +666,8 @@ def main():
     
     # Header with modern design
     st.markdown("""
-        <div style="text-align: center; padding: 5rem 0 4rem;">
-            <h1 class="gradient-text">
+        <div style="text-align: center; padding: 6rem 0 4rem;">
+            <h1 style="color: #4f46e5; font-size: 4.5rem; font-weight: 800; margin: 0 auto 2rem; line-height: 1.2; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
                 🎯 Smart Job Recommendation System
             </h1>
             <p style="text-align: center; color: #475569; font-size: 1.4rem; max-width: 800px; margin: 1.5rem auto; line-height: 1.6; font-weight: 400;">

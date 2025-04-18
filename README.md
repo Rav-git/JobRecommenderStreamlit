@@ -57,3 +57,8 @@ streamlit run app.py
 - PyPDF2
 - pandas
 - NumPy
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 896496a (Updated app.py and README, removed LICENSE)
